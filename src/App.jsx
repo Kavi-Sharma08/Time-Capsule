@@ -5,6 +5,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
 import Profile from './components/Profile'
+import Home from './components/Home'
 function App() {
  return (
     <>
@@ -39,6 +40,10 @@ export const appRouter = createBrowserRouter([
       {
         path : "/profile",
         element : <Profile/>
+      },
+      {
+        path : "/Home",
+        element : <Home/>
       }
 
     ]
