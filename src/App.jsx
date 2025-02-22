@@ -2,6 +2,8 @@ import Header from './components/Header'
 import { Outlet } from 'react-router-dom'
 import About from './components/About'
 import { createBrowserRouter } from 'react-router-dom'
+import SignUp from './components/SignUp'
+import Login from './components/Login'
 function App() {
  return (
     <>
@@ -23,6 +25,15 @@ export const appRouter = createBrowserRouter([
       {
         path : "/about",
         element : <About/>
+      },
+      {
+        path : "/Signup",
+        element : <SignUp/>
+      },
+      {
+        path : "/login",
+        element : <Login/>
+
       }
 
     ]
