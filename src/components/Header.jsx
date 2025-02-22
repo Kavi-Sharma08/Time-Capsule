@@ -3,10 +3,15 @@ import { Button } from './ui/button'
 import { LOGO } from './utils/Constants'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { account } from '@/appwrite/appwriteConfig'
 const Header = () => {
   
   const navigate = useNavigate();
-  
+  const HandleLogOut = async ()=>{
+    
+    const result = await account.deleteSessions();
+    navigate("/")
+  }
   return (
     <div className='w-full h-[15%]'>
         <div className='w-full border-b-2 h-full'>
@@ -18,6 +23,7 @@ const Header = () => {
                 <Link to = {"/About"}><li><Button>About</Button></li></Link>
                 <Link to ={"/login"}><li><Button>Login</Button></li></Link>
                 <Link to = {"/Signup"}><li><Button>Sign-Up</Button></li></Link>
+                <Button onClick={HandleLogOut}>Log Out</Button>
                 
               </ul>
             </div>

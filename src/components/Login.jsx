@@ -17,7 +17,8 @@ const Login = () => {
 
     promise.then(
       function (response) {
-        console.log(response); // Success
+        console.log(response);
+        navigate("/profile") // Success
       },
       function (error) {
         console.log(error); // Failure
