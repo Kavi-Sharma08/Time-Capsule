@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { ArrowRight, Menu, X, Image, UserCheck, Users, Clock, Globe, Lock, Shield } from "lucide-react"
 
 const About = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  
 
   useEffect(() => {
     const handleScroll = (e) => {
