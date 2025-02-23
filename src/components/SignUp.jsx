@@ -22,7 +22,7 @@ const SignUp = () => {
       const response = await account.create(ID.unique(), Email, Password, Name);
       console.log("User created successfully:", response);
       dispatch(addUsers(response));
-      navigate("/profile");
+      alert("Account Created")
     } catch (error) {
       console.log("Signup error:", error.message);
       
