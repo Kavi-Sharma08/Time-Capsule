@@ -4,12 +4,18 @@ import { LOGO } from "./utils/Constants";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { account } from "@/appwrite/appwriteConfig";
+import { useDispatch } from "react-redux";
+import { removeUser } from "./utils/UserSlice";
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch =  useDispatch();
   
   const HandleLogOut = async () => {
     const result = await account.deleteSessions();
+    console.log(result);
+    dispatch(removeUser());
     navigate("/");
+    alert("Logged Out")
   };
   return (
     <div className="w-full h-[15%]">

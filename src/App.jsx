@@ -6,12 +6,24 @@ import SignUp from './components/SignUp'
 import Login from './components/Login'
 import Profile from './components/Profile'
 import Home from './components/Home'
+import appStore from './components/utils/appStore'
+import { Provider } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 function App() {
+  const [Home, setHome] = useState(true)
  return (
+
     <>
       <div className='w-screen h-screen'>
-        <Header/>
-        <Outlet/>
+        
+        
+        <Provider store = {appStore}>
+          <Header/>
+          
+          <Outlet/>
+        </Provider>
+        
 
       </div>
       
@@ -46,8 +58,15 @@ export const appRouter = createBrowserRouter([
         element : <Home/>
       }
 
-    ]
+    ],
+    
+    
   },
+  {
+    path : "/error",
+    element : <Error/>
+
+  }
   
 ])
 

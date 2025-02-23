@@ -5,20 +5,30 @@ import { useNavigate } from "react-router-dom";
 import { account } from "../appwrite/appwriteConfig";
 import { LOGIN_BACKGROUND } from "./utils/Constants";
 import { USER_PIC } from "./utils/Constants";
+import { addUsers } from "./utils/UserSlice";
+import { useDispatch } from "react-redux";
+import { userError } from "./utils/UserSlice";
+import Profile from "./Profile";
 const SignUp = () => {
   const navigate = useNavigate();
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-
+  const dispatch = useDispatch();
   const SignUpUser = async () => {
+    
     const promise = account.create(uuid(), Email, Password);
     promise.then(
       function (response) {
-        console.log(response); // Success
+        console.log(response);
+        dispatch(addUsers(response))
+        navigate("/profile")
+         // Success
       },
       function (error) {
-        console.log(error); // Failure
+        dispatch(userError(error))
+        navigate("/error")
+         // Failure
       }
     );
   };
