@@ -9,19 +9,27 @@ import {
 
 const Profile = () => {
   const user = useSelector((store) => store.user.users);
-  if (!user) return;
-  console.log(user);
-  const { email, $id } = user;
+  if (!user) return null;
+
+  const { email, name } = user;
   return (
     <div>
       <div className="flex justify-end m-3">
         <HoverCard>
-          <HoverCardTrigger><Button>User Info</Button></HoverCardTrigger>
+          <HoverCardTrigger>
+            <Button>User Info</Button>
+          </HoverCardTrigger>
           <HoverCardContent>
-            {email}
+            <div>
+              <p>Username : {name}</p>
+              <p>Email : {email}</p>
+            </div>
           </HoverCardContent>
+          
         </HoverCard>
       </div>
+
+      
     </div>
   );
 };

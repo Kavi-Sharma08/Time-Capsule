@@ -3,13 +3,16 @@ import { v4 as uuid } from "uuid";
 import { useNavigate } from "react-router-dom";
 import { account } from "../appwrite/appwriteConfig";
 import { LOGIN_BACKGROUND } from "./utils/Constants";
+import { addUsers } from "./utils/UserSlice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
 
-  const SignUpUser = async () => {
+  const SignUpUser =  () => {
     const promise = account.createEmailPasswordSession(
       Email,
       Password
@@ -17,7 +20,7 @@ const Login = () => {
 
     promise.then(
       function (response) {
-        console.log(response);
+        dispatch(addUsers(response))
         navigate("/profile") // Success
       },
       function (error) {

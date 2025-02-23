@@ -10,6 +10,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch =  useDispatch();
   
+  
   const HandleLogOut = async () => {
     const result = await account.deleteSessions();
     console.log(result);

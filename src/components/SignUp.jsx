@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { v4 as uuid } from "uuid";
+import { ID } from "appwrite";
 import { useNavigate } from "react-router-dom";
 import { account } from "../appwrite/appwriteConfig";
 import { LOGIN_BACKGROUND } from "./utils/Constants";
 import { USER_PIC } from "./utils/Constants";
 import { addUsers } from "./utils/UserSlice";
 import { useDispatch } from "react-redux";
-import { userError } from "./utils/UserSlice";
-import Profile from "./Profile";
+
 const SignUp = () => {
   const navigate = useNavigate();
   const [Name, setName] = useState("");
@@ -16,23 +16,16 @@ const SignUp = () => {
   const [Password, setPassword] = useState("");
   const dispatch = useDispatch();
   const SignUpUser = async () => {
-    
-    const promise = account.create(uuid(), Email, Password);
-    promise.then(
-      function (response) {
-        console.log(response);
-        dispatch(addUsers(response))
-        navigate("/profile")
-         // Success
-      },
-      function (error) {
-        dispatch(userError(error))
-        navigate("/error")
-         // Failure
-      }
-    );
+    try {
+      const response = await account.create(ID.unique(), Email, Password, Name);
+      console.log("User created successfully:", response);
+      dispatch(addUsers(response));
+      navigate("/profile");
+    } catch (error) {
+      console.error("Signup error:", error.message);
+      
+    }
   };
-
   return (
     <div className="w-[50%] h-[60%] mx-auto my-7">
       <div className="flex items-center justify-center m-3">
