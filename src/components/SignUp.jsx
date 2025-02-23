@@ -8,8 +8,10 @@ import { LOGIN_BACKGROUND } from "./utils/Constants";
 import { USER_PIC } from "./utils/Constants";
 import { addUsers } from "./utils/UserSlice";
 import { useDispatch } from "react-redux";
+import { useRef } from "react";
 
 const SignUp = () => {
+  const emailRef = useRef();
   const navigate = useNavigate();
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
@@ -22,7 +24,7 @@ const SignUp = () => {
       dispatch(addUsers(response));
       navigate("/profile");
     } catch (error) {
-      console.error("Signup error:", error.message);
+      console.log("Signup error:", error.message);
       
     }
   };
@@ -53,6 +55,7 @@ const SignUp = () => {
             <p>Email</p>
             <input
               className="border-2 border-black p-2 w-full"
+              ref={emailRef}
               type="email"
               id="Email"
               placeholder="Enter your Email"

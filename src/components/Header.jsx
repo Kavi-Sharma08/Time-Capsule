@@ -15,7 +15,7 @@ const Header = () => {
     const result = await account.deleteSessions();
     console.log(result);
     dispatch(removeUser());
-    navigate("/");
+    navigate("/Home");
     alert("Logged Out")
   };
   return (

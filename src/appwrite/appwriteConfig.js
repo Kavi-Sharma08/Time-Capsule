@@ -1,7 +1,7 @@
 import { Client, Account, Databases , Storage } from "appwrite";
 import config from "../config/config";
 const client = new Client();
-
+console.log(config.appwriteProjectID)
 client.setEndpoint(config.appwriteUrl).setProject(config.appwriteProjectID);
 export const account = new Account(client);
 export const databases = new Databases(client);
